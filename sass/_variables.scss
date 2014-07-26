@@ -1,0 +1,98 @@
+//colours
+
+$white: #f6f6f6;
+$orange: #feae22;
+$purple: #a81ace;
+$blue: #0d6eee;
+$emerald: #00a99d;
+$green: #80db2f;
+$yellow: #ffde17;
+$navy: #001324;
+$black: #090909;
+
+$colour1: $navy;
+$colour2: $black;
+$colour3: $white;
+$colour4: darken($white, 2%);
+
+//Box Shadow
+@mixin shadow {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
+}
+
+@mixin text-shadow {
+    text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.6);
+}
+
+@mixin layout {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+//HEADING AND FONT COULOURS
+.orange {
+    color: $orange;
+}
+
+.purple {
+    color: $purple;
+}
+
+.blue {
+    color: $blue;
+}
+
+.emerald {
+    color: $emerald;
+}
+
+.green {
+    color: $green;
+}
+
+.yellow {
+    color: $yellow;
+}
+
+.white {
+    color: $white;
+}
+
+.navy {
+    color: $navy;
+}
+
+//BACKGROUND THEME COLOURS
+
+.orangeBG {
+    background: $orange;
+}
+
+.purpleBG {
+    background: $purple;
+}
+
+.blueBG {
+    background: $blue;
+}
+
+.emeraldBG {
+    background: $emerald;
+}
+
+.greenBG {
+    background: $green;
+}
+
+.yellowBG {
+    background: $yellow;
+}
+
+.navyBG {
+    background: $navy;
+}
+
+.whiteBG {
+    background: $white;
+}

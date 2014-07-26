@@ -1,0 +1,77 @@
+/* =============================================================================
+                   Navigation 
+   ========================================================================== */
+nav {
+    ul.menu {
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+    li {
+        display: inline-block;
+        white-space: nowrap;
+        margin-right: -5px;
+        padding: 0.73em 0;
+        background: $black;
+        &:hover a {
+            color: $navy;
+        }
+        &:first-child {
+            border-bottom: 3px solid $yellow;
+        }
+        &:nth-child(2) {
+            border-bottom: 3px solid $purple;
+        }
+        &:nth-child(3) {
+            border-bottom: 3px solid $blue;
+        }
+        &:nth-child(4) {
+            border-bottom: 3px solid $emerald;
+        }
+        &:nth-child(5) {
+            border-bottom: 3px solid $green;
+        }
+        &:last-child {
+            border-bottom: 3px solid $orange;
+            margin-right: 0;
+        }
+        &:first-child:hover {
+            background: $yellow;
+        }
+        &:nth-child(2):hover {
+            background: $purple;
+        }
+        &:nth-child(3):hover {
+            background: $blue;
+        }
+        &:nth-child(4):hover {
+            background: $emerald;
+        }
+        &:nth-child(5):hover {
+            background: $green;
+        }
+        &:last-child:hover {
+            background: $orange;
+        }
+        a {
+            text-transform: uppercase;
+            font-size: 20px;
+            padding: 1.2em 1.5em;
+            color: $white;
+        }
+    }
+}
+
+//end of nav styling
+
+//for sticky nav
+header.sticky {
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        z-index: 999999;
+    }
+}

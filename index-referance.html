@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Mandy Made This | Web Design + Development</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+</head>
+<body>
+
+<header>
+	<div class="logoWrapper">
+		<img src="images/logo.png" alt="Mandy Made This Logo">
+	</div>
+	<nav>
+		<ul class="menu">
+			<li><a href="#about">About</a></li>
+			<li><a href="#portfolio">Portfolio</a></li>
+			<li><a href="#products">Products</a></li>
+			<li><a href="#free">Free Stuff</a></li>
+			<li><a href="#blog">Blog</a></li>
+			<li><a href="#contact">Contact</a></li>
+		</ul>
+	</nav>
+</header>
+
+
+
+<script>
+
+    // doc ready
+    $(function() {
+      
+      var oldTop = 0;
+
+      $(window).on("scroll",function(e){
+        // How far are we scrolled down? in PX
+        var tipTop = $(window).scrollTop();
+        // Where in the document is our nav? In PX
+        var navPosition = $('nav').css('position');
+        var navHeight = $('nav').height();
+        var navTop = $('nav').position().top;
+
+        // this is a way to store the old navigation top
+        if(navTop > 0) { // if NOT fixed
+          oldTop = navTop; // store the value of the old navTop
+        }
+
+        //if we have scrolled past it
+        if(tipTop >= navTop){
+          $('header').addClass('sticky');
+          $('header').css('padding-top',navHeight);
+        }
+        else {
+          $('header').removeClass('sticky');
+          $('header').css('padding-top',0);
+        }
+
+        // check if we need to unstick it because of the fixed bug
+        if(oldTop > tipTop) {
+          $('header').removeClass('sticky');
+          $('header').css('padding-top',0);
+        }
+
+      }); // end window scroll
+
+    }); // end document ready
+
+
+
+  </script>
+	
+</body>
+</html>
