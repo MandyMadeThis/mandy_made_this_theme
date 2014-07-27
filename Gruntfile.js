@@ -32,7 +32,7 @@ module.exports = function(grunt) {
                     lineNumbers: true
                 },
                 files: {
-                    'style.css': 'scss/style.scss'
+                    'style.css': 'sass/style.scss'
                 }
             },
             dist: {
@@ -40,7 +40,7 @@ module.exports = function(grunt) {
                     style: 'compressed',
                 },
                 files: {
-                    'style.css': 'scss/style.scss'
+                    'style.css': 'sass/style.scss'
                 }
             }
         },
@@ -71,12 +71,13 @@ module.exports = function(grunt) {
         //prefix anything that needs prefixing for the last 3 browser versions - production only
         autoprefixer: {
             options: {
-                browsers: ['last 3 version']
+                browsers: ['last 2 version']
             },
-            no_dest: {
-                src: 'style.css' // rewrite compiled css file w/ prefixes
+            your_target: {
+                src: 'style.css',
+                dest: 'style.css',
             },
-        }
+        },
 
     });
 

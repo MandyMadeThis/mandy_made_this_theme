@@ -87,7 +87,6 @@ dd {
     border-top: 3px solid $green;
     border-bottom: 3px solid $green;
     background: linear-gradient(45deg, $colour3 45px, transparent 45px) 64px 64px, linear-gradient(45deg, $colour3 45px, transparent 45px, transparent 91px, $colour4 91px, $colour4 135px, transparent 135px), linear-gradient(-45deg, $colour3 23px, transparent 23px, transparent 68px, $colour3 68px, $colour3 113px, transparent 113px, transparent 158px, $colour3 158px);
-    background: -webkit-linear-gradient(45deg, $colour3 45px, transparent 45px) 64px 64px, -webkit-linear-gradient(45deg, $colour3 45px, transparent 45px, transparent 91px, $colour4 91px, $colour4 135px, transparent 135px), -webkit-linear-gradient(-45deg, $colour3 23px, transparent 23px, transparent 68px, $colour3 68px, $colour3 113px, transparent 113px, transparent 158px, $colour3 158px);
     background-color: $colour4;
     background-size: 128px 128px;
     section {
@@ -117,7 +116,7 @@ dd {
     }
     a {
         color: $green;
-        @include transition(all 0.6s ease-in-out);
+        transition: all 0.6s ease-in-out;
         &:hover {
             color: $navy;
         }
@@ -166,7 +165,7 @@ dd {
             border-radius: 50%;
             color: $green;
             box-shadow: inset 0 0 0 2px $green;
-            @include transition(all 0.4s ease-in-out);
+            transition: all 0.4s ease-in-out;
             &:hover {
                 box-shadow: inset 0 0 0 30px $navy;
             }
@@ -210,7 +209,6 @@ svg.sig {
     fill: none;
     stroke-width: 2;
     stroke: black;
-    -webkit-animation: write 5s ease-in-out;
     animation: write 5s ease-in-out;
 }
 
@@ -234,7 +232,7 @@ svg.sig {
     margin: 10%;
     color: $green;
     text-transform: uppercase;
-    @include transition(all 0.6s ease-in-out);
+    transition: all 0.6s ease-in-out;
     &:hover {
         color: $navy;
     }

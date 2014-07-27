@@ -25,7 +25,6 @@ $colour4: darken($white, 2%);
 }
 
 @mixin layout {
-    max-width: 1400px;
     width: 100%;
     margin: 0 auto;
 }
