@@ -72,8 +72,8 @@ $(function() {
             $('html,body').animate({
                 scrollTop: 0
             }, 100, function() {
-                $('.contact').slideToggle();
                 $('.contact').addClass('revealed');
+                $('.contact').slideToggle();
             });
         } else {
             $('.contact').addClass('revealed');

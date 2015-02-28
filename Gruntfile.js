@@ -7,77 +7,91 @@ module.exports = function(grunt) {
         concat: {
             options: {
                 separator: ';',
+                stripBanners: true
             },
             dist: {
-                src: ['scripts/working/jquery-2.1.0.min.js, scripts/working/jquery-ui-1.10.4.custom.min.js', 'scripts/working/jquery.smooth-scroll.min.js', 'scripts/working/isotope.pkgd.min.js', 'scripts/working/highlight.pack.js', 'scripts/working/scripts.js'], //input
-
-                dest: 'scripts/scripts.min.js' //output
+                src: ['js/vendor/**/*.js', 'js/source/scripts.js'],
+                dest: 'js/build/scripts.js',
             },
         },
 
-        // concatenate and minify scripts - prod only
-        uglify: {
-            build: {
-                src: ['scripts/working/jquery-2.1.0.min.js, scripts/working/jquery-ui-1.10.4.custom.min.js', 'scripts/working/jquery.smooth-scroll.min.js', 'scripts/working/isotope.pkgd.min.js', 'scripts/working/highlight.pack.js', 'scripts/working/scripts.js'], //input
-
-                dest: 'scripts/scripts.min.js' //output
+        // compile Sass - with standard sourcemaps
+        sass: {
+            dest: {
+                options: {
+                    style: 'compressed'
+                },
+                files: {
+                    'css/style.css': 'scss/style.scss'
+                }
             }
         },
 
-        // compile Sass.  Expanded for dev and compressed for prod.
-        sass: {
-            dev: {
-                options: {
-                    style: 'expand',
-                    lineNumbers: true
-                },
-                files: {
-                    'style.css': 'sass/style.scss'
-                }
+         // concatenate and minify scripts. **Don't forget to add scripts array in order of dependencies
+        uglify: {
+            options: {
+                preserveComments: 'some',
+                mangle: false
             },
-            dist: {
-                options: {
-                    style: 'compressed',
-                },
-                files: {
-                    'style.css': 'sass/style.scss'
-                }
+            build: {
+                src: ['js/build/scripts.js'],
+                dest: 'js/scripts.min.js'
             }
         },
 
         // watch these files and do these tasks when something changes
         watch: {
+           scripts: {
+               files: ['js/**/*.js'],
+               tasks: ['concat', 'uglify'],
+               options: {
+                   spawn: false,
+               },
+           },
+           css: {
+               files: ['scss/**/*.scss'],
+               tasks: ['sass'],
+               options: {
+                   spawn: false,
+               }
+           }
+        },
+
+        //autoprefix all the CSS 
+        autoprefixer: {
             options: {
-                livereload: true
+                browsers: ['> 1%', 'last 2 versions'],
+                map: {
+                    annotation: true
+                }
             },
+            no_dest: {
+                src: 'css/style.css' // overwrite the css file
+            },
+        },
 
-            scripts: {
-                files: ['scripts/working/*.js'],
-                tasks: ['concat'],
-                options: {
-                    spawn: false,
+        browserSync: {
+            dev: {
+                bsFiles: {
+                    src: 'css/style.css'
                 },
-            },
-
-            css: {
-                files: ['sass/*.scss'],
-                tasks: ['sass:dev'],
                 options: {
-                    spawn: false,
+                    watchTask: true,
+                    proxy: 'http://mandy.dev/mandymadethis/'
                 }
             }
         },
 
-        //prefix anything that needs prefixing for the last 3 browser versions - production only
-        autoprefixer: {
+        // Notify us only when there's a problem
+        notify_hooks: {
             options: {
-                browsers: ['last 2 version']
-            },
-            your_target: {
-                src: 'style.css',
-                dest: 'style.css',
-            },
-        },
+                enabled: true,
+                success: false, // whether successful grunt executions should be notified automatically
+                duration: 2.5, // the duration of notification in seconds, for `notify-send only
+                title: "SHIT SON! You done fucked somet'n up!",
+                message: "Houston, we have a problem..."
+            }
+        }
 
     });
 
@@ -87,11 +101,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-autoprefixer');
+    grunt.loadNpmTasks('grunt-notify');
+    grunt.loadNpmTasks('grunt-browser-sync');
 
-    // type "grunt" into the terminal for development.
-    grunt.registerTask('default', ['sass:dev', 'concat', 'autoprefixer', 'watch']);
-
-    // type "grunt prod"  into the terminal for production .
-    grunt.registerTask('prod', ['sass:dist', 'uglify']);
+    // type: 'grunt' for development tasks.
+    grunt.registerTask('default', ['sass', 'autoprefixer', 'concat', 'uglify', 'browserSync', 'notify_hooks', 'watch']);
 
 };
